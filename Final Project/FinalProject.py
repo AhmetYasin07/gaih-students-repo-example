@@ -1,10 +1,10 @@
 class Cooking():
   name=""
-  products = []
+  ingredients = []
   times = []
-  def __init__(self, name, products, times):
+  def __init__(self, name, ingredients, times):
     self.name = name
-    self.products = products
+    self.ingredients = ingredients
     self.times = times
   
   def add(self, product):
@@ -23,8 +23,8 @@ class Cooking():
     print("Yemek hazır :) Servis edebilirsiniz.")
   
 class Recipe1(Cooking):
-  def __init__(self, name ,products, times):
-    super().__init__(name, products, times)
+  def __init__(self, name ,ingredients, times):
+    super().__init__(name, ingredients, times)
 
   def grate(self, product):
     print(f"{product} malzemesini rendeleyin.")
@@ -37,7 +37,7 @@ class Recipe1(Cooking):
     print(f"\nHazırlama Süresi: {self.times[0]}")
     print(f"Pişme Süresi: {self.times[1]}")
     print("\nMalzemeler:\n ")
-    for i in self.products:
+    for i in self.ingredients:
       print("     "+i)
     print("\nHazırlanışı: \n ")
     print("""
@@ -54,13 +54,15 @@ class Recipe1(Cooking):
     Üzerine dilediğiniz malzemeleri ekleyerek servis edin.""")
 
   def startCooking(self):
-    self.addTo("Tencere",self.products[1])
-    self.grate(self.products[3])
-    self.add(self.products[2])
+    self.addTo("Tencere",self.ingredients[1])
+    self.grate(self.ingredients[3])
+    self.add(self.ingredients[2])
+    self.grate(self.ingredients[4])
+    self.add(self.ingredients[4])
     self.add("Baharat")
     self.mix()
     self.cook("Bir süre")
-    self.add(self.products[0])
+    self.add(self.ingredients[0])
     self.add("Su")
     self.cook("10 dk")
     self.rest("bir kaç dakika")
@@ -69,8 +71,8 @@ class Recipe1(Cooking):
 
     
 class Recipe2(Cooking):
-  def __init__(self, name ,products, times):
-    super().__init__(name, products, times)
+  def __init__(self, name ,ingredients, times):
+    super().__init__(name, ingredients, times)
 
   def chopProd(self, product):
     print(f"{product} malzemesini doğrayın.")
@@ -89,7 +91,7 @@ class Recipe2(Cooking):
     print(f"\nHazırlama Süresi: {self.times[0]}")
     print(f"Pişme Süresi: {self.times[1]}")
     print("\nMalzemeler:\n ")
-    for i in self.products:
+    for i in self.ingredients:
       print("     "+i)
     print("\nHazırlanışı: \n ")
     print("""
@@ -109,29 +111,31 @@ class Recipe2(Cooking):
     """)
 
   def prepareSauce(self):
-    self.add(self.products[5])
-    self.add(self.products[6])
-    self.add(self.products[7])
+    print("\nSosun hazırlanışı:\n")
+    self.add(self.ingredients[5])
+    self.add(self.ingredients[6])
+    self.add(self.ingredients[7])
     self.mix()
 
   def startCooking(self):
-    self.chopProd(self.products[0])
-    self.peelProd(self.products[2])
-    self.chopProd(self.products[2])
-    self.cutProd(self.products[1], "yarım ay")
-    self.chopProd(self.products[3])
-    self.chopProd(self.products[4])
-    self.notIn(self.products[3])
+    self.chopProd(self.ingredients[0])
+    self.peelProd(self.ingredients[2])
+    self.chopProd(self.ingredients[2])
+    self.cutProd(self.ingredients[1], "yarım ay")
+    self.chopProd(self.ingredients[3])
+    self.chopProd(self.ingredients[4])
+    self.notIn(self.ingredients[3])
     self.mix()
-    self.add(self.products[3])
+    self.add(self.ingredients[3])
     self.prepareSauce()
+    print("\n")
     self.add("Sos")
     print("\n "*2)
     self.serve()
 
 class Recipe3(Cooking):
-  def __init__(self, name ,products, times):
-    super().__init__(name, products, times)
+  def __init__(self, name ,ingredients, times):
+    super().__init__(name, ingredients, times)
     
   def sliceProd(self, product):
     print(f"{product} malzemesini dilimleyin ")
@@ -147,7 +151,7 @@ class Recipe3(Cooking):
     print(f"\nHazırlama Süresi: {self.times[0]}")
     print(f"Pişme Süresi: {self.times[1]}")
     print("\nMalzemeler:\n ")
-    for i in self.products:
+    for i in self.ingredients:
       print("     "+i)
     print("\nHazırlanışı: \n ")
     print("""
@@ -164,13 +168,13 @@ class Recipe3(Cooking):
     Akı, şeffaf bir renkten beyaza doğru dönen sahanda sucuklu yumurtayı sıcak olarak bekletmeden sevdiklerinizle paylaşın.
     """)
   def startCooking(self):
-    self.sliceProd(self.products[0])
-    self.addTo("Tava", self.products[0])
-    self.cook(self.products[0])
-    self.upturnProd(self.products[0])
-    self.breakProd(self.products[1])
-    self.cook("Kısık ateşte")
+    self.sliceProd(self.ingredients[0])
+    self.addTo("Tava", self.ingredients[0])
+    self.cook(self.ingredients[0])
+    self.upturnProd(self.ingredients[0])
+    self.breakProd(self.ingredients[1])
     self.mix()
+    self.cook("Kısık ateşte")
     print("\n "*2)
     self.serve()
 
@@ -191,14 +195,14 @@ print("\n "*5)
 print("1- Domatesli Makarna\n2- Çoban Salata\n3- Sucuklu Yumurta")
 print("\n "*2)
 
-Menu = int(input("Pişirmek istediğiniz yemeğin sayısını giriniz: "))
-print("\n "*2)
 
-if Menu == 1:
+Menu = input("Pişirmek istediğiniz yemeğin numarasını giriniz: ")
+print("\n "*2)
+if Menu == "1":
   meal1.startCooking()
-elif Menu == 2:
+elif Menu == "2":
   meal2.startCooking()
-elif Menu == 3:
+elif Menu == "3":
   meal3.startCooking()
 else:
   print("Üzgünüz, menüde böyle bir seçenek yok :(")
